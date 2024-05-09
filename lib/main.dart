@@ -1,8 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,15 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      scrollBehavior: MaterialScrollBehavior().copyWith(
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
         dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown},
         ),
       debugShowCheckedModeBanner: false,
       title: 'ILMI CAST',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
       home: const MyHomePage(title: 'ILMI CAST'),
     );
   }
@@ -38,10 +32,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Stack(
+      children: [Scaffold(
       appBar: AppBar(
         primary: false,
-        title: Text(widget.title,style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+        title: Text(widget.title,style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         actions: <Widget> [
           IconButton(
             icon: const Icon(
@@ -60,12 +55,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ), 
         child: 
         SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: 100),
+          padding: const EdgeInsets.only(bottom: 10),
           child: Column(
           children: [
             // Search Bar
-            Padding(
-              padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 20.0),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 20.0),
               child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -83,9 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  _buildListPromoted(Image: Image),
-                  _buildListPromoted(Image: Image),
-                  _buildListPromoted(Image: Image),
+                  _buildListPromoted(),
+                  _buildListPromoted(),
+                  _buildListPromoted(),
                 ],
               ),
             ),
@@ -150,8 +145,47 @@ class _MyHomePageState extends State<MyHomePage> {
             
           ],
         ),
-      ),
-    ));
+      ),),), 
+      Positioned(
+        bottom: 0,
+        left: 0,
+        right: 0,
+        child: Container(
+          margin: EdgeInsets.fromLTRB(10, 0, 0, 10),
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+            child: BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.headphones),
+                  label: 'Headphones',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.history),
+                  label: 'History',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite),
+                  label: 'Favorite',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.people),
+                  label: 'People',
+                ),
+              ],
+              backgroundColor: Colors.transparent,
+              selectedItemColor: Colors.blue,
+              unselectedItemColor: Colors.grey,
+              showUnselectedLabels: false,
+              showSelectedLabels:false,
+            ),
+          ),
+        )
+      )
+]);
   }
 }
 
@@ -159,13 +193,13 @@ Widget _titleText({required String title}){
   return Align(
         alignment: Alignment.centerLeft,
         child: Container(
-          padding: EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10.0),
           child: Text(title, textAlign: TextAlign.left),
         ),
       );
 }
 
-Widget _buildListPromoted({required Image}){
+Widget _buildListPromoted(){
   return Padding(
               padding: const EdgeInsets.only(right: 10 ,left: 10),
               child: Container(
@@ -186,7 +220,7 @@ Widget _buildListCategory({required String title}){
                     color: Colors.grey,
                   ),
                   Container(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Text(title, textAlign: TextAlign.left),
                   ),
                 ],
@@ -200,7 +234,7 @@ Widget _buildListItem({required String title, required String username, required
     children: <Widget>[
       // Image
       const Padding(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(10),
         child: SizedBox(
           width: 100,
           height: 100,
