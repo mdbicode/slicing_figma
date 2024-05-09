@@ -59,7 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ), 
         child: 
         SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: 100),
   child: Column(
+  
     children: [
       // Search Bar
       Padding(
@@ -74,13 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       // Promoted Podcast
-      Align(
-        alignment: Alignment.centerLeft,
-        child: Container(
-          padding: EdgeInsets.all(10.0),
-          child: Text('Promoted Podcast', textAlign: TextAlign.left),
-        ),
-      ),
+      _titleText(title: 'Promoted Podcast'),
       // Promoted Podcast List
       SizedBox(
         height: 200,
@@ -112,13 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       // Trending Podcasts
-      Align(
-        alignment: Alignment.centerLeft,
-        child: Container(
-          padding: EdgeInsets.all(10.0),
-          child: Text('Trending Podcasts', textAlign: TextAlign.left),
-        ),
-      ),
+      _titleText(title: 'Trending Podcast'),
       // Trending Podcasts List
       Column(
         children: <Widget>[
@@ -140,13 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       // Continue Podcast
-      Align(
-        alignment: Alignment.centerLeft,
-        child: Container(
-          padding: EdgeInsets.all(10.0),
-          child: Text('Continue Podcast', textAlign: TextAlign.left),
-        ),
-      ),
+      _titleText(title: 'Continue Podcast'),
       // Continue Podcast List
       Column(
         children: <Widget>[
@@ -168,40 +152,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       // Top Categories
-      Align(
-        alignment: Alignment.centerLeft,
-        child: Container(
-          padding: EdgeInsets.all(10.0),
-          child: Text('Top Categories', textAlign: TextAlign.left),
-        ),
-      ),
+      _titleText(title: 'Top Categories'),
       // Top Categories List
       SizedBox(
-        height: 100,
+        height: 200,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 10 ,left: 10),
-              child: Container(
-                width: 200,
-                color: Colors.grey,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                width: 200,
-                color: Colors.grey,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                width: 200,
-                color: Colors.grey,
-              ),
-            ),
+            _buildListCategory(title: 'Music'),
+            _buildListCategory(title: 'Artist'),
+            _buildListCategory(title: 'News'),
           ],
         ),
       ),
@@ -212,6 +172,36 @@ class _MyHomePageState extends State<MyHomePage> {
 ));
   }
 }
+
+Widget _titleText({required String title}){
+  return Align(
+        alignment: Alignment.centerLeft,
+        child: Container(
+          padding: EdgeInsets.all(10.0),
+          child: Text(title, textAlign: TextAlign.left),
+        ),
+      );
+}
+
+Widget _buildListCategory({required String title}){
+  return Padding(
+              padding: const EdgeInsets.only(right: 10 ,left: 10),
+              child: Column(
+                children: [
+                  Container(
+                    width: 200,
+                    height: 120,
+                    color: Colors.grey,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(title, textAlign: TextAlign.left),
+                  ),
+                ],
+              ),
+            );
+}
+
 Widget _buildListItem({required String title, required String username, required String duration}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
