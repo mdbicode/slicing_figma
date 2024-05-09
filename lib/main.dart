@@ -45,13 +45,17 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ]
       ),
-      body: Center(
+      body: DefaultTextStyle.merge(
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ), 
         child: Column(
           children: [
             // Search Bar
-           Container(
-              child: const Padding(
-                padding: EdgeInsets.all(20.0),
+            Container(
+                child: const Padding(
+                padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 20.0),
                 child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0) )
@@ -59,13 +63,68 @@ class _MyHomePageState extends State<MyHomePage> {
                   hintText: 'Search the podcast here',
                   prefixIcon: Icon(Icons.search)
                   ),
-
                 ),
               ),
-            )
+            ),
+            // Promoted Podcast
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                padding: EdgeInsets.all(10.0),
+                child: Text('Promoted Podcast', textAlign: TextAlign.left),
+              )
+              ),
+            SizedBox(
+            height: 200,
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Container(
+                        width: 300,
+                        color: Colors.grey,                      
+                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Container(
+                        width: 300,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Container(
+                        width: 300,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                padding: EdgeInsets.all(10.0),
+                child: Text('Trending Podcast', textAlign: TextAlign.left),
+              )
+              ),
+
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                padding: EdgeInsets.all(10.0),
+                child: Text('Continue Podcast', textAlign: TextAlign.left),
+              )
+            ),
+           
+
           ],
         ),
-      ),
-      );
+      ));
   }
 }
