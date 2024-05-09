@@ -33,10 +33,126 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [Scaffold(
+      children: [
+      _favorite(title: widget.title),
+      Positioned(
+        bottom: 0,
+        left: 0,
+        right: 0,
+        child: Container(
+          margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(50)),
+            child: BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.headphones),
+                  label: 'Headphones',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.history),
+                  label: 'History',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite),
+                  label: 'Favorite',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.people),
+                  label: 'People',
+                ),
+              ],
+              backgroundColor: Colors.transparent,
+              selectedItemColor: Colors.blue,
+              unselectedItemColor: Colors.grey,
+              showUnselectedLabels: false,
+              showSelectedLabels:false,
+            ),
+          ),
+        )
+      )
+]);
+  }
+}
+
+Widget _favorite({required String title}){
+  return Scaffold(
       appBar: AppBar(
         primary: false,
-        title: Text(widget.title,style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        title: Text(title,style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        actions: <Widget> [
+          IconButton(
+            icon: const Icon(
+              Icons.notifications_rounded,
+              size: 30.0,
+              color: Colors.black,
+              ),
+            onPressed: (){},
+          ),
+        ]
+      ),
+      body: DefaultTextStyle.merge(
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: 60),
+          child: Column(
+          children: <Widget>[
+            // Trending Podcasts
+            _titleText(title: 'Favourite Podcast'),
+            // Trending Podcasts List
+            Column(
+              children: <Widget>[
+                _buildListItem(
+                  title: 'Denny Sumargo',
+                  username: '@curhatbang',
+                  duration: '21 Minutes',
+                ),
+                _buildListItem(
+                  title: 'Close of the Door',
+                  username: '@corbuzier',
+                  duration: '17 Minutes',
+                ),
+                _buildListItem(
+                  title: 'Raditya Dika',
+                  username: '@radityadika',
+                  duration: '43 Minutes',
+                ),
+                _buildListItem(
+                  title: 'Denny Sumargo',
+                  username: '@curhatbang',
+                  duration: '21 Minutes',
+                ),
+                _buildListItem(
+                  title: 'Close of the Door',
+                  username: '@corbuzier',
+                  duration: '17 Minutes',
+                ),
+                _buildListItem(
+                  title: 'Raditya Dika',
+                  username: '@radityadika',
+                  duration: '43 Minutes',
+                ),
+              ],
+            ),
+          
+              ]
+             )
+          )
+        )
+      );
+
+}
+Widget _home({required String title}){
+  return Scaffold(
+      appBar: AppBar(
+        primary: false,
+        title: Text(title,style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
         actions: <Widget> [
           IconButton(
             icon: const Icon(
@@ -144,49 +260,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             
           ],
-        ),
-      ),),), 
-      Positioned(
-        bottom: 0,
-        left: 0,
-        right: 0,
-        child: Container(
-          margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(50)),
-            child: BottomNavigationBar(
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.headphones),
-                  label: 'Headphones',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.history),
-                  label: 'History',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite),
-                  label: 'Favorite',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.people),
-                  label: 'People',
-                ),
-              ],
-              backgroundColor: Colors.transparent,
-              selectedItemColor: Colors.blue,
-              unselectedItemColor: Colors.grey,
-              showUnselectedLabels: false,
-              showSelectedLabels:false,
-            ),
-          ),
-        )
-      )
-]);
-  }
+          ))));
 }
 
 Widget _titleText({required String title}){
