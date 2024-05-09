@@ -40,7 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        primary: false,
+        title: Text(widget.title,style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
         actions: <Widget> [
           IconButton(
             icon: const Icon(
@@ -60,116 +61,97 @@ class _MyHomePageState extends State<MyHomePage> {
         child: 
         SingleChildScrollView(
           padding: EdgeInsets.only(bottom: 100),
-  child: Column(
-  
-    children: [
-      // Search Bar
-      Padding(
-        padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 20.0),
-        child: TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(25.0))),
-            hintText: 'Search the podcast here',
-            prefixIcon: Icon(Icons.search),
-          ),
-        ),
-      ),
-      // Promoted Podcast
-      _titleText(title: 'Promoted Podcast'),
-      // Promoted Podcast List
-      SizedBox(
-        height: 200,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[
+          child: Column(
+          children: [
+            // Search Bar
             Padding(
-              padding: const EdgeInsets.only(right: 10 ,left: 10),
-              child: Container(
-                width: 300,
-                color: Colors.grey,
+              padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 20.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                  hintText: 'Search the podcast here',
+                  prefixIcon: Icon(Icons.search),
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                width: 300,
-                color: Colors.grey,
+            // Promoted Podcast
+            _titleText(title: 'Promoted Podcast'),
+            // Promoted Podcast List
+            SizedBox(
+              height: 200,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  _buildListPromoted(Image: Image),
+                  _buildListPromoted(Image: Image),
+                  _buildListPromoted(Image: Image),
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                width: 300,
-                color: Colors.grey,
+            // Trending Podcasts
+            _titleText(title: 'Trending Podcast'),
+            // Trending Podcasts List
+            Column(
+              children: <Widget>[
+                _buildListItem(
+                  title: 'Denny Sumargo',
+                  username: '@curhatbang',
+                  duration: '21 Minutes',
+                ),
+                _buildListItem(
+                  title: 'Close of the Door',
+                  username: '@corbuzier',
+                  duration: '17 Minutes',
+                ),
+                _buildListItem(
+                  title: 'Raditya Dika',
+                  username: '@radityadika',
+                  duration: '43 Minutes',
+                ),
+              ],
+            ),
+            // Continue Podcast
+            _titleText(title: 'Continue Podcast'),
+            // Continue Podcast List
+            Column(
+              children: <Widget>[
+                _buildListItem(
+                  title: 'Denny Sumargo',
+                  username: '@curhatbang',
+                  duration: '21 Min',
+                ),
+                _buildListItem(
+                  title: 'Close of the Door',
+                  username: '@corbuzier',
+                  duration: '21 Min',
+                ),
+                _buildListItem(
+                  title: 'Raditya Dika',
+                  username: '@radityadika',
+                  duration: '21 Min',
+                ),
+              ],
+            ),
+            // Top Categories
+            _titleText(title: 'Top Categories'),
+            // Top Categories List
+            SizedBox(
+              height: 200,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  _buildListCategory(title: 'Music'),
+                  _buildListCategory(title: 'Artist'),
+                  _buildListCategory(title: 'News'),
+                ],
               ),
             ),
+            
           ],
         ),
       ),
-      // Trending Podcasts
-      _titleText(title: 'Trending Podcast'),
-      // Trending Podcasts List
-      Column(
-        children: <Widget>[
-          _buildListItem(
-            title: 'Denny Sumargo',
-            username: '@curhatbang',
-            duration: '21 Minutes',
-          ),
-          _buildListItem(
-            title: 'Close of the Door',
-            username: '@corbuzier',
-            duration: '17 Minutes',
-          ),
-          _buildListItem(
-            title: 'Raditya Dika',
-            username: '@radityadika',
-            duration: '43 Minutes',
-          ),
-        ],
-      ),
-      // Continue Podcast
-      _titleText(title: 'Continue Podcast'),
-      // Continue Podcast List
-      Column(
-        children: <Widget>[
-          _buildListItem(
-            title: 'Denny Sumargo',
-            username: '@curhatbang',
-            duration: '21 Min',
-          ),
-          _buildListItem(
-            title: 'Close of the Door',
-            username: '@corbuzier',
-            duration: '21 Min',
-          ),
-          _buildListItem(
-            title: 'Raditya Dika',
-            username: '@radityadika',
-            duration: '21 Min',
-          ),
-        ],
-      ),
-      // Top Categories
-      _titleText(title: 'Top Categories'),
-      // Top Categories List
-      SizedBox(
-        height: 200,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[
-            _buildListCategory(title: 'Music'),
-            _buildListCategory(title: 'Artist'),
-            _buildListCategory(title: 'News'),
-          ],
-        ),
-      ),
-      
-    ],
-  ),
-),
-));
+    ));
   }
 }
 
@@ -181,6 +163,16 @@ Widget _titleText({required String title}){
           child: Text(title, textAlign: TextAlign.left),
         ),
       );
+}
+
+Widget _buildListPromoted({required Image}){
+  return Padding(
+              padding: const EdgeInsets.only(right: 10 ,left: 10),
+              child: Container(
+                width: 300,
+                color: Colors.grey,
+              ),
+            );
 }
 
 Widget _buildListCategory({required String title}){
