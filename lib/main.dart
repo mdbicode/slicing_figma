@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Padding(Text(widget.title)),
+        title: Text(widget.title),
         actions: <Widget> [
           IconButton(
             icon: const Icon(
@@ -44,6 +44,27 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: (){},
           ),
         ]
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            // Search Bar
+           Container(
+              child: const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0) )
+                  ),
+                  hintText: 'Search the podcast here',
+                  prefixIcon: Icon(Icons.search)
+                  ),
+
+                ),
+              ),
+            )
+          ],
+        ),
       ),
       );
   }
