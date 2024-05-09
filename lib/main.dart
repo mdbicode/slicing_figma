@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,19 +55,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             // Search Bar
-            Container(
-                child: const Padding(
-                padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 20.0),
-                child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0) )
-                  ),
-                  hintText: 'Search the podcast here',
-                  prefixIcon: Icon(Icons.search)
-                  ),
-                ),
+            const Padding(
+            padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 20.0),
+            child: TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(25.0) )
+              ),
+              hintText: 'Search the podcast here',
+              prefixIcon: Icon(Icons.search)
               ),
             ),
+                          ),
             // Promoted Podcast
             Align(
               alignment: Alignment.centerLeft,
@@ -113,6 +113,48 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('Trending Podcast', textAlign: TextAlign.left),
               )
               ),
+            Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    // Image
+                    const Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child:  SizedBox(
+                          width: 100,
+                          height: 100,
+                          child: ColoredBox(color: Colors.grey)
+                        ),),
+                    // Title n Desc
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('Denny Sumargo',
+                        style: TextStyle(fontSize: 14),
+                        ),
+                        Text('@curhatbang',
+                        style: TextStyle(fontSize: 14,fontWeight: FontWeight.normal),
+                        ),
+                        Text('21 Min',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                        ),
+                      ],
+                    ),
+                      ],
+                    ),
+                    // Play
+                    Container(
+                      padding: EdgeInsets.only(right: 40),
+                      child: Icon(Icons.play_circle_fill,size: 50),
+                    )
+                  ],
+                )
+              ],
+              
+            ),
 
             Align(
               alignment: Alignment.centerLeft,
@@ -121,7 +163,49 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('Continue Podcast', textAlign: TextAlign.left),
               )
             ),
-           
+            Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    // Image
+                    const Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child:  SizedBox(
+                          width: 100,
+                          height: 100,
+                          child: ColoredBox(color: Colors.grey)
+                        ),),
+                    // Title n Desc
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('Denny Sumargo',
+                        style: TextStyle(fontSize: 14),
+                        ),
+                        Text('@curhatbang',
+                        style: TextStyle(fontSize: 14,fontWeight: FontWeight.normal),
+                        ),
+                        Text('21 Min',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                        ),
+                      ],
+                    ),
+                      ],
+                    ),
+                    // Play
+                    Container(
+                      padding: EdgeInsets.only(right: 40),
+                      child: Icon(Icons.play_circle_fill,size: 50),
+                    )
+                  ],
+                )
+              ],
+              
+            ),
+
 
           ],
         ),
