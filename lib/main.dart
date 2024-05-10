@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-      _favorite(title: widget.title),
+      _home(title: widget.title),
       Positioned(
         bottom: 0,
         left: 0,
@@ -111,32 +111,38 @@ Widget _favorite({required String title}){
                 _buildListItem(
                   title: 'Denny Sumargo',
                   username: '@curhatbang',
-                  duration: '21 Minutes',
+                  duration: '21 Min',
+                  image:'images/dennysumargo.jpg'
                 ),
                 _buildListItem(
                   title: 'Close of the Door',
                   username: '@corbuzier',
-                  duration: '17 Minutes',
+                  duration: '21 Min',
+                  image:'images/cotd.jpeg'
                 ),
                 _buildListItem(
                   title: 'Raditya Dika',
                   username: '@radityadika',
-                  duration: '43 Minutes',
+                  duration: '21 Min',
+                  image:'images/raditya.jpg'
                 ),
                 _buildListItem(
-                  title: 'Denny Sumargo',
-                  username: '@curhatbang',
-                  duration: '21 Minutes',
+                  title: 'Vindes',
+                  username: '@vindes',
+                  duration: '30 Minutes',
+                  image:'images/vindes.jpg'
                 ),
                 _buildListItem(
-                  title: 'Close of the Door',
-                  username: '@corbuzier',
-                  duration: '17 Minutes',
+                  title: 'TED',
+                  username: '@tedtalksdaily',
+                  duration: '25 Minutes',
+                  image:'images/TED.png'
                 ),
                 _buildListItem(
-                  title: 'Raditya Dika',
-                  username: '@radityadika',
-                  duration: '43 Minutes',
+                  title: 'Makna Talks',
+                  username: '@maknatalks',
+                  duration: '12 Minutes',
+                  image:'images/maknatalks.jpeg'
                 ),
               ],
             ),
@@ -194,9 +200,9 @@ Widget _home({required String title}){
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  _buildListPromoted(),
-                  _buildListPromoted(),
-                  _buildListPromoted(),
+                  _buildListPromoted(image: 'images/promoted1.png'),
+                  _buildListPromoted(image: 'images/promoted2.png'),
+                  _buildListPromoted(image: 'images/promoted3.png'),
                 ],
               ),
             ),
@@ -205,20 +211,23 @@ Widget _home({required String title}){
             // Trending Podcasts List
             Column(
               children: <Widget>[
-                _buildListItem(
+               _buildListItem(
                   title: 'Denny Sumargo',
                   username: '@curhatbang',
-                  duration: '21 Minutes',
+                  duration: '42 Minutes',
+                  image:'images/dennysumargo.jpg'
                 ),
                 _buildListItem(
                   title: 'Close of the Door',
                   username: '@corbuzier',
-                  duration: '17 Minutes',
+                  duration: '43 Minutes',
+                  image:'images/cotd.jpeg'
                 ),
                 _buildListItem(
                   title: 'Raditya Dika',
                   username: '@radityadika',
-                  duration: '43 Minutes',
+                  duration: '70 Minutes',
+                  image:'images/raditya.jpg'
                 ),
               ],
             ),
@@ -230,17 +239,20 @@ Widget _home({required String title}){
                 _buildListItem(
                   title: 'Denny Sumargo',
                   username: '@curhatbang',
-                  duration: '21 Min',
+                  duration: '42 Minutes',
+                  image:'images/dennysumargo.jpg'
                 ),
                 _buildListItem(
-                  title: 'Close of the Door',
-                  username: '@corbuzier',
-                  duration: '21 Min',
+                  title: 'Vindes',
+                  username: '@vindes',
+                  duration: '30 Minutes',
+                  image:'images/vindes.jpg'
                 ),
                 _buildListItem(
                   title: 'Raditya Dika',
                   username: '@radityadika',
-                  duration: '21 Min',
+                  duration: '70 Minutes',
+                  image:'images/raditya.jpg'
                 ),
               ],
             ),
@@ -252,9 +264,9 @@ Widget _home({required String title}){
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  _buildListCategory(title: 'Music'),
-                  _buildListCategory(title: 'Artist'),
-                  _buildListCategory(title: 'News'),
+                  _buildListCategory(title: 'Music' , image: 'images/category_music.jpg'),
+                  _buildListCategory(title: 'Artist', image: 'images/category_artist.jpg'),
+                  _buildListCategory(title: 'News', image: 'images/category_news.png'),
                 ],
               ),
             ),
@@ -262,6 +274,8 @@ Widget _home({required String title}){
           ],
           ))));
 }
+
+
 
 Widget _titleText({required String title}){
   return Align(
@@ -273,17 +287,17 @@ Widget _titleText({required String title}){
       );
 }
 
-Widget _buildListPromoted(){
+Widget _buildListPromoted({required String image}){
   return Padding(
               padding: const EdgeInsets.only(right: 10 ,left: 10),
               child: Container(
                 width: 300,
-                color: Colors.grey,
+                child: Image.asset(image),
               ),
             );
 }
 
-Widget _buildListCategory({required String title}){
+Widget _buildListCategory({required String title, required String image}){
   return Padding(
               padding: const EdgeInsets.only(right: 10 ,left: 10),
               child: Column(
@@ -291,7 +305,7 @@ Widget _buildListCategory({required String title}){
                   Container(
                     width: 200,
                     height: 120,
-                    color: Colors.grey,
+                    child: Image.asset(image),
                   ),
                   Container(
                     padding: const EdgeInsets.all(10.0),
@@ -302,17 +316,17 @@ Widget _buildListCategory({required String title}){
             );
 }
 
-Widget _buildListItem({required String title, required String username, required String duration}) {
+Widget _buildListItem({required String title, required String username, required String duration, required String image}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
       // Image
-      const Padding(
+      Padding(
         padding: EdgeInsets.all(10),
         child: SizedBox(
           width: 100,
           height: 100,
-          child: ColoredBox(color: Colors.grey),
+          child: Image.asset(image)
         ),
       ),
       // Title n Desc
