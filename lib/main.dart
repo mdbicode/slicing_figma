@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:slicing_figma/api/app_write.dart';
 
 void main() {
-
   AppWrite.init();
   runApp(const MyApp());
 }
@@ -37,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-      _home(title: widget.title),
+      _favorite(title: widget.title),
       Positioned(
         bottom: 0,
         left: 0,
@@ -82,81 +81,65 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 Widget _favorite({required String title}){
-  return Scaffold(
-      appBar: AppBar(
-        primary: false,
-        title: Text(title,style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-        actions: <Widget> [
-          IconButton(
-            icon: const Icon(
-              Icons.notifications_rounded,
-              size: 30.0,
-              color: Colors.black,
-              ),
-            onPressed: (){},
-          ),
-        ]
-      ),
-      body: DefaultTextStyle.merge(
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: 60),
-          child: Column(
-          children: <Widget>[
-            // Trending Podcasts
-            _titleText(title: 'Favourite Podcast'),
-            // Trending Podcasts List
-            Column(
-              children: <Widget>[
-                _buildListItem(
-                  title: 'Denny Sumargo',
-                  username: '@curhatbang',
-                  duration: '21 Min',
-                  image:'images/dennysumargo.jpg'
-                ),
-                _buildListItem(
-                  title: 'Close of the Door',
-                  username: '@corbuzier',
-                  duration: '21 Min',
-                  image:'images/cotd.jpeg'
-                ),
-                _buildListItem(
-                  title: 'Raditya Dika',
-                  username: '@radityadika',
-                  duration: '21 Min',
-                  image:'images/raditya.jpg'
-                ),
-                _buildListItem(
-                  title: 'Vindes',
-                  username: '@vindes',
-                  duration: '30 Minutes',
-                  image:'images/vindes.jpg'
-                ),
-                _buildListItem(
-                  title: 'TED',
-                  username: '@tedtalksdaily',
-                  duration: '25 Minutes',
-                  image:'images/TED.png'
-                ),
-                _buildListItem(
-                  title: 'Makna Talks',
-                  username: '@maknatalks',
-                  duration: '12 Minutes',
-                  image:'images/maknatalks.jpeg'
+  return FutureBuilder<Map<String, dynamic>?>(
+    future: AppWrite.getMusic(), // Fetch data asynchronously
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return Center(child: CircularProgressIndicator());
+      } else {
+        if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData) {
+          // Data fetched successfully, display it
+          final musicData = snapshot.data!;
+          return Scaffold(
+            appBar: AppBar(
+              primary: false,
+              title: Text(title, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              actions: <Widget>[
+                IconButton(
+                  icon: const Icon(
+                    Icons.notifications_rounded,
+                    size: 30.0,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {},
                 ),
               ],
             ),
-          
-              ]
-             )
-          )
-        )
-      );
+            body: DefaultTextStyle.merge(
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(bottom: 60),
+                child: Column(
+                  children: <Widget>[
+                    // Title for Music section
+                    _titleText(title: 'Music'),
 
+                    _buildListItem(
+                          title: musicData['title'],
+                          username: musicData['name'],
+                          duration: musicData['duration'],
+                          image: musicData['image'],
+                        )
+                      ,
+                    
+                  ],
+                ),
+              ),
+            ),
+          );
+        } else {
+          return Center(child: Text('No data available'));
+        }
+      }
+    },
+  );
 }
+
 Widget _home({required String title}){
   return Scaffold(
       appBar: AppBar(
@@ -329,7 +312,7 @@ Widget _buildListItem({required String title, required String username, required
         child: SizedBox(
           width: 100,
           height: 100,
-          child: Image.asset(image)
+          child: Image.network(image)
         ),
       ),
       // Title n Desc

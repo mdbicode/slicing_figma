@@ -13,19 +13,19 @@ class AppWrite {
     getMusic();
   }
   
-static Future<String> getMusic() async {
-  try{
-    final d = await _database.getDocument(
-      databaseId: "668ec643001b3ca18f82", 
-      collectionId: "668ecb340001e821ce35", 
-      documentId: "66901b3700150ba7ba12");
-  log(d.data.toString());
-  return d.data['name'];
-
-  }catch (e){
-    log('$e');
-    return '';
+static Future<Map<String, dynamic>?> getMusic() async {
+    try {
+      final response = await _database.getDocument(
+        databaseId: "668ec643001b3ca18f82",
+        collectionId: "668ecb340001e821ce35",
+        documentId: "66901b3700150ba7ba12",
+      );
+      log(response.data.toString());
+      return response.data;
+    } catch (e) {
+      log('$e');
+      return null;
+    }
   }
-}
 
 }
