@@ -14,7 +14,7 @@ REFRENSI HOME DESIGN SLICING 1
 HASIL
 
 ![Slicing1.1](https://github.com/mdbicode/slicing_figma/blob/main/images/Home%201.png)
-[![Slicing1.2](https://github.com/mdbicode/slicing_figma/blob/main/images/Home%202.png)
+![Slicing1.2](https://github.com/mdbicode/slicing_figma/blob/main/images/Home%202.png)
 
 REFRENSI DESIGN SLICING 2
 
@@ -23,4 +23,8 @@ REFRENSI DESIGN SLICING 2
 HASIL
 
 ![Slicing2](https://github.com/mdbicode/slicing_figma/blob/main/images/Favourite.png)
+
+INI ADALAH SCREENSHOT DARI TAMPILAN FRONT END DENGAN MENGAMBIL DATA API DARI APPWRITE
+
+![frontendapi](https://github.com/mdbicode/slicing_figma/blob/main/images/frontendapi.png)
 
