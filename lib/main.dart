@@ -1,8 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:slicing_figma/api/app_write.dart';
 
 void main() {
+
+  AppWrite.init();
   runApp(const MyApp());
 }
 
